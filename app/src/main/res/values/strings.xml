@@ -1,7 +1,17 @@
 <resources>
     <string name="app_name">Gmail Clone</string>
-
+    <string name="gmail">Gmail</string>
     <string name="menu">Menu</string>
     <string name="search_hint">Search in mail</string>
     <string name="profile_avatar_content_desc">avatar</string>
+    <string name="inbox">Inbox</string>
+    <string name="starred">Starred</string>
+    <string name="snoozed">Snoozed</string>
+    <string name="important">Important</string>
+    <string name="sent">Sent</string>
+    <string name="scheduled">Scheduled</string>
+    <string name="drafts">Drafts</string>
+    <string name="all_mail">All mail</string>
+    <string name="spam">Spam</string>
+    <string name="trash">Trash</string>
 </resources>

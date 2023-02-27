@@ -5,10 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
@@ -18,16 +15,20 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layoutId
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
+import androidx.constraintlayout.compose.Dimension
 import com.google.mail.R
 import com.google.mail.components.LayoutIds.MENU_ICON
 import com.google.mail.components.LayoutIds.PROFILE_AVATAR
 import com.google.mail.components.LayoutIds.SEARCH_TEXT
-import com.google.mail.ui.theme.LightGray
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 object LayoutIds {
     const val MENU_ICON = "menuIcon"
@@ -36,7 +37,7 @@ object LayoutIds {
 }
 
 @Composable
-fun HomeAppBar() {
+fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope) {
     Box(
         modifier = Modifier
             .padding(16.dp)
@@ -53,19 +54,23 @@ fun HomeAppBar() {
                     .padding(8.dp),
                 constraintSet = getConstraintSet()
             ) {
-                Icon(
-                    Icons.Default.Menu,
-                    stringResource(R.string.menu),
-                    modifier = Modifier.layoutId(MENU_ICON)
-                )
+                IconButton(modifier = Modifier.layoutId(MENU_ICON), onClick = {
+                    scope.launch {
+                        scaffoldState.drawerState.open()
+                    }
+                }) {
+                    Icon(
+                        Icons.Default.Menu,
+                        stringResource(R.string.menu)
+                    )
+                }
 
                 Text(
                     text = stringResource(R.string.search_hint),
-                    color = LightGray,
-                    modifier = Modifier
-                        .layoutId(SEARCH_TEXT)
-                        .padding(16.dp, 0.dp, 0.dp, 0.dp),
-                    style = MaterialTheme.typography.body2
+                    color = colorResource(id = R.color.gray_400),
+                    modifier = Modifier.layoutId(SEARCH_TEXT),
+                    style = MaterialTheme.typography.body2,
+                    textAlign = TextAlign.Start
                 )
 
                 Image(
@@ -102,6 +107,7 @@ fun getConstraintSet(): ConstraintSet = ConstraintSet {
         end.linkTo(profileAvatar.start)
         top.linkTo(parent.top)
         bottom.linkTo(parent.bottom)
+        width = Dimension.fillToConstraints
     }
 
     constrain(profileAvatar) {
