@@ -12,6 +12,7 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import com.google.mail.components.BottomBar
 import com.google.mail.components.DrawerMenu
 import com.google.mail.components.HomeAppBar
 import com.google.mail.ui.theme.GmailTheme
@@ -43,6 +44,9 @@ fun GmailApp() {
         topBar = { HomeAppBar(scaffoldState, scope) },
         drawerContent = {
             DrawerMenu(scrollStat)
+        },
+        bottomBar = {
+            BottomBar()
         }
     ) {
 

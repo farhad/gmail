@@ -14,4 +14,6 @@
     <string name="all_mail">All mail</string>
     <string name="spam">Spam</string>
     <string name="trash">Trash</string>
+    <string name="mail">Mail</string>
+    <string name="meet">Meet</string>
 </resources>
