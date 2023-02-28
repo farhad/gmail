@@ -16,4 +16,5 @@
     <string name="trash">Trash</string>
     <string name="mail">Mail</string>
     <string name="meet">Meet</string>
+    <string name="compose">Compose</string>
 </resources>

@@ -1,6 +1,9 @@
 package com.google.mail.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -41,10 +44,12 @@ object MailRowLayoutIds {
 }
 
 @Composable
-fun MailList(paddingValues: PaddingValues) {
+fun MailList(paddingValues: PaddingValues, scrollState: ScrollState) {
     Box(modifier = Modifier.padding(paddingValues)) {
         LazyColumn(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .scrollable(scrollState, Orientation.Vertical),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             val constraintSet = ConstraintSet {
