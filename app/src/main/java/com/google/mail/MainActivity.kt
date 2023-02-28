@@ -1,5 +1,6 @@
 package com.google.mail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,6 +16,7 @@ import androidx.compose.ui.Modifier
 import com.google.mail.components.BottomBar
 import com.google.mail.components.DrawerMenu
 import com.google.mail.components.HomeAppBar
+import com.google.mail.components.MailList
 import com.google.mail.ui.theme.GmailTheme
 
 class MainActivity : ComponentActivity() {
@@ -33,6 +35,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun GmailApp() {
     val scaffoldState = rememberScaffoldState()
@@ -47,8 +50,7 @@ fun GmailApp() {
         },
         bottomBar = {
             BottomBar()
-        }
-    ) {
-
-    }
+        },
+        content = { MailList(it) }
+    )
 }
